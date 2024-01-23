@@ -42,17 +42,17 @@ const getUserWithEmail = function (email) {
  */
 const getUserWithId = function (id) {
   return pool
-  .query(`SELECT id, name, email, password FROM users WHERE id = $1`, [id])
-  .then((result) => {
-    console.log(result.rows);
-    if (result.rows.length === 0) {
-      return null
-    }
-    return result.rows[0];
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+    .query(`SELECT id, name, email, password FROM users WHERE id = $1`, [id])
+    .then((result) => {
+      console.log(result.rows);
+      if (result.rows.length === 0) {
+        return null
+      }
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 };
 
 /**
@@ -67,17 +67,17 @@ const addUser = function (user) {
   // return Promise.resolve(user);
 
   return pool
-  .query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [user.name, user.email, user.password])
-  .then((result) => {
-    // console.log(result.rows);
-    if (result.rows.length === 0) {
-      return null
-    }
-    return result.rows[0];
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+    .query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [user.name, user.email, user.password])
+    .then((result) => {
+      // console.log(result.rows);
+      if (result.rows.length === 0) {
+        return null
+      }
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 
 };
 
@@ -89,7 +89,25 @@ const addUser = function (user) {
  * @return {Promise<[{}]>} A promise to the reservations.
  */
 const getAllReservations = function (guest_id, limit = 10) {
-  return getAllProperties(null, 2);
+
+  const query = `
+    SELECT reservations.id, properties.*, reservations.start_date, reservations.end_date
+    FROM properties
+    JOIN reservations ON guest_id = properties.id
+    WHERE guest_id = $1
+    LIMIT $2;
+    `;
+
+    return pool
+    .query(query, [guest_id, limit])
+    .then((result) => {
+      // console.log(result.rows);
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+
 };
 
 /// Properties
