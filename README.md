@@ -4,7 +4,7 @@ A simple multi-page Airbnb clonde that uses server-side Javascript to display th
 
 ## Final Product
 
-<!-- !["Screenshot of desktop view"](https://github.com/migauth/tweeter-lhl/blob/master/docs/desktop-view.jpeg?raw=true) -->
+!["Screenshot of main page"](https://github.com/migauth/LightBnB/blob/main/docs/photo1.jpg?raw=true)
 
 Logged in users can see reservations.
 
