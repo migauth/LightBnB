@@ -134,9 +134,9 @@ const getAllProperties = (options, limit = 10) => {
     queryString += `WHERE city LIKE $${queryParams.length} `;
   }
 
-  // Onwer id
+  // Owner id
   if (options.owner_id) {
-    queryParams.push(`%${options.owner_id}%`);
+    queryParams.push(options.owner_id);
     queryString += `AND owner_id = $${queryParams.length} `;
   }
 
@@ -160,7 +160,7 @@ const getAllProperties = (options, limit = 10) => {
   if (options.minimum_rating) {
     queryParams.push(options.minimum_rating);
     queryString += `
-    HAVING avg(property_reviews.rating) >= $${queryParams.length}`;
+     HAVING avg(property_reviews.rating) >= $${queryParams.length}`;
   }
 
   queryParams.push(limit);
