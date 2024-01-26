@@ -20,13 +20,13 @@ const pool = new Pool({
  */
 const getUserWithEmail = function(email) {
 
-  const query = `SELECT id, name, email, password FROM users WHERE email = $1`
+  const query = `SELECT id, name, email, password FROM users WHERE email = $1;`;
 
   return pool
     .query(query, [email.toLowerCase()])
     .then((result) => {
       if (result.rows.length === 0) {
-        return null
+        return null;
       }
       return result.rows[0];
     })
@@ -43,13 +43,13 @@ const getUserWithEmail = function(email) {
  */
 const getUserWithId = function(id) {
 
-  const query = `SELECT * FROM users WHERE id = $1`
+  const query = `SELECT * FROM users WHERE id = $1;`;
 
   return pool
     .query(query, [id])
     .then((result) => {
       if (result.rows.length === 0) {
-        return null
+        return null;
       }
       return result.rows[0];
     })
@@ -65,12 +65,12 @@ const getUserWithId = function(id) {
  */
 const addUser = function(user) {
 
-  const query = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`
+  const query = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`;
   return pool
     .query(query, [user.name, user.email, user.password])
     .then((result) => {
       if (result.rows.length === 0) {
-        return null
+        return null;
       }
       return result.rows[0];
     })
@@ -143,7 +143,7 @@ const getAllProperties = (options, limit = 10) => {
   // Search by cost
   if (options.minimum_price_per_night && options.maximum_price_per_night) {
     queryParams.push(options.minimum_price_per_night * 100, options.maximum_price_per_night * 100);
-    queryString += `AND cost_per_night >= $${queryParams.length -1} AND cost_per_night <= $${queryParams.length}`;
+    queryString += `AND cost_per_night >= $${queryParams.length - 1} AND cost_per_night <= $${queryParams.length}`;
   } else if (options.minimum_price_per_night) {
     queryParams.push(options.minimum_price_per_night * 100);
     queryString += `AND cost_per_night >= $${queryParams.length}`;
@@ -182,12 +182,12 @@ const getAllProperties = (options, limit = 10) => {
  */
 const addProperty = function(property) {
 
-  const query = `INSERT INTO properties (title, description, number_of_bedrooms, number_of_bathrooms, parking_spaces, cost_per_night, thumbnail_photo_url, cover_photo_url, street, country, city, province, post_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;`
+  const query = `INSERT INTO properties (title, description, number_of_bedrooms, number_of_bathrooms, parking_spaces, cost_per_night, thumbnail_photo_url, cover_photo_url, street, country, city, province, post_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;`;
   return pool
     .query(query, [property.title, property.description, property.number_of_bedrooms, property.number_of_bathrooms, property.parking_spaces, property.cost_per_night, property.thumbnail_photo_url, property.cover_photo_url, property.street, property.country, property.city, property.province, property.post_code])
     .then((result) => {
       if (result.rows.length === 0) {
-        return null
+        return null;
       }
       return result.rows[0];
     })
