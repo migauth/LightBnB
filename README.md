@@ -6,6 +6,8 @@ A simple multi-page Airbnb clonde that uses server-side Javascript to display th
 
 !["Screenshot of main page"](https://github.com/migauth/LightBnB/blob/main/docs/photo1.jpg?raw=true)
 
+## Features
+
 Logged in users can see reservations.
 
 Search page will filter results from database.
