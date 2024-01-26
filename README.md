@@ -1,9 +1,10 @@
 # LightBnB
 
-A simple multi-page Airbnb clonde that uses server-side Javascript to display the information from queries to web pages via SQL queries.
+A simple multi-page Airbnb clone that uses server-side Javascript to display the information from queries to web pages via SQL queries.
 
 ## Final Product
 
+Main Page
 !["Screenshot of main page"](https://github.com/migauth/LightBnB/blob/main/docs/photo1.jpg?raw=true)
 
 ## Features
