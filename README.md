@@ -9,8 +9,10 @@ Main Page
 
 ## Features
 
-Logged in users can see reservations.
-
 Search page will filter results from database.
+
+### When signed in
+
+Logged in users can see reservations.
 
 Create listing inserts new data into database.
