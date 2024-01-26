@@ -11,7 +11,7 @@ Main Page
 
 Search page will filter results from database.
 
-### When signed in
+### When signed in:
 
 Logged in users can see reservations.
 
